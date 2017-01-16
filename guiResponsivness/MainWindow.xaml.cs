@@ -12,7 +12,7 @@ namespace guiResponsivness
     public partial class MainWindow : Window
     {
         
-        private static string _fileContents;
+        private static object _fileContents;
 
         public MainWindow()
         {
@@ -42,7 +42,7 @@ namespace guiResponsivness
             Dispatcher.Invoke(() =>
             {
                 loadingLabel.Content = "Done Loading";
-                WritingTextBox.Text = _fileContents;
+                WritingTextBox.Text = _fileContents.ToString();
               
             });
         }
@@ -54,22 +54,20 @@ namespace guiResponsivness
 
         private async void WriteToFile()
         {
-            if (_fileContents.Length > 0)
+            if (_fileContents.ToString().Length > 0)
             {
                 var uniEncoding = new UnicodeEncoding();
                 var filename = Environment.CurrentDirectory + @"\testCopy.txt";
 
                 using (var sourceStream = File.Open(filename, FileMode.Create))
                 {
-                    var result = uniEncoding.GetBytes(_fileContents);
+                    var result = uniEncoding.GetBytes(_fileContents.ToString());
                     sourceStream.Seek(0, SeekOrigin.End);
                     await sourceStream.WriteAsync(result, 0, result.Length);
                 }
                 _fileContents = "";
                 Dispatcher.Invoke(() =>
                 {
-
-                    // WritingTextBox.Text = _fileContents;
                     message.Content = "";
                 });
             }
