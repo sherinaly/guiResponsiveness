@@ -100,7 +100,7 @@ namespace guiResponsivness
             }
             else
             {
-                Dispatcher.Invoke(() => message.Content += "Wait till Read is Done \nor Press Load again.\n");
+                Dispatcher.Invoke(() => message.Content = "Wait till Read is Done \nor Press Load again.\n");
             }
            
         }
