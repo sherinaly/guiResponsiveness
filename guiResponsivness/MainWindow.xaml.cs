@@ -54,7 +54,8 @@ namespace guiResponsivness
             }
             catch (Exception e)
             {
-               
+                Console.WriteLine(e);
+               // throw;
             }
             
         }
@@ -89,7 +90,7 @@ namespace guiResponsivness
                 catch (Exception e)
                 {
                     Console.WriteLine(e);
-                    throw;
+                  //  throw;
                 }
                    
                    
