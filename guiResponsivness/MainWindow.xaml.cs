@@ -38,7 +38,13 @@ namespace guiResponsivness
 
            
             _fileContents = Encoding.ASCII.GetString(results);
-            Dispatcher.Invoke(() => loadingLabel.Content = "Done Loading");
+            
+            Dispatcher.Invoke(() =>
+            {
+                loadingLabel.Content = "Done Loading";
+                WritingTextBox.Text = _fileContents;
+              
+            });
         }
 
         private void WriteOnFile_Click(object sender, RoutedEventArgs e)
@@ -59,15 +65,17 @@ namespace guiResponsivness
                     sourceStream.Seek(0, SeekOrigin.End);
                     await sourceStream.WriteAsync(result, 0, result.Length);
                 }
+                _fileContents = "";
                 Dispatcher.Invoke(() =>
                 {
-                    WritingTextBox.Text = _fileContents;
+
+                    // WritingTextBox.Text = _fileContents;
                     message.Content = "";
                 });
             }
             else
             {
-                Dispatcher.Invoke(() => message.Content += "Not Done Reading Yet\n");
+                Dispatcher.Invoke(() => message.Content += "Wait till Read is Done \nor Press Load again.\n");
             }
         }
 
@@ -76,13 +84,6 @@ namespace guiResponsivness
            StatusTetBox.Text = "I am doing Something Else....";
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            _fileContents = "";
-            loadingLabel.Content = "";
-            message.Content = "";
-            WritingTextBox.Text = "";
-            StatusTetBox.Text = "";
-        }
+       
     }
 }

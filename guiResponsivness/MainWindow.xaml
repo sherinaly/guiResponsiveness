@@ -3,16 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Button Content="LoadFromFile" HorizontalAlignment="Left" Margin="116,10,0,0" VerticalAlignment="Top"
+        <Button Content="Load File" HorizontalAlignment="Left" Margin="116,10,0,0" VerticalAlignment="Top"
                 Width="105" Click="ReadFile_Click" Height="44" />
-        <Button Content="Show and Save File" HorizontalAlignment="Left" Margin="34,190,0,0" VerticalAlignment="Top"
+        <Button Content="Save File" HorizontalAlignment="Left" Margin="34,190,0,0" VerticalAlignment="Top"
                 Width="125" Click="WriteOnFile_Click" Height="41" />
         <Button Content="Do Something Else While &#xD;&#xA;File Processing" HorizontalAlignment="Left"
                 Margin="346,223,0,0" VerticalAlignment="Top" Width="146" Height="44" Click="Button_Click_2" />
         <TextBox x:Name="StatusTetBox" HorizontalAlignment="Left" Height="76" Margin="182,223,0,0" TextWrapping="Wrap"
                  VerticalAlignment="Top" Width="145" />
-        <Button Content="Clear All &#xD;&#xA;Text Boxs" HorizontalAlignment="Left" Margin="381,272,0,0"
-                VerticalAlignment="Top" Width="79" Height="38" Click="Button_Click_3" />
         <Label x:Name="message" Content="" HorizontalAlignment="Left" Margin="34,241,0,0" VerticalAlignment="Top" />
         <Label x:Name="loadingLabel" Content="" HorizontalAlignment="Left" Margin="246,28,0,0" VerticalAlignment="Top"
                Width="214" />
