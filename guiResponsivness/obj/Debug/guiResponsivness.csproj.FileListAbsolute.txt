@@ -1,0 +1,13 @@
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\bin\Debug\guiResponsivness.exe.config
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\bin\Debug\guiResponsivness.exe
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\bin\Debug\guiResponsivness.pdb
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\obj\Debug\guiResponsivness.csprojResolveAssemblyReference.cache
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\obj\Debug\MainWindow.baml
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\obj\Debug\MainWindow.g.cs
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\obj\Debug\App.g.cs
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\obj\Debug\guiResponsivness_MarkupCompile.cache
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\obj\Debug\guiResponsivness.g.resources
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\obj\Debug\guiResponsivness.Properties.Resources.resources
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\obj\Debug\guiResponsivness.csproj.GenerateResource.Cache
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\obj\Debug\guiResponsivness.exe
+c:\users\mr.fathi\documents\visual studio 2012\Projects\guiResponsivness\guiResponsivness\obj\Debug\guiResponsivness.pdb
