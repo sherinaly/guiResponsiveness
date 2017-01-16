@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -12,7 +13,9 @@ namespace guiResponsivness
     public partial class MainWindow : Window
     {
         
-        private static object _fileContents;
+        private static string _fileContents;
+        
+        ReaderWriterLockSlim WritingLocker=new ReaderWriterLockSlim();
 
         public MainWindow()
         {
@@ -24,27 +27,36 @@ namespace guiResponsivness
      private void ReadFile_Click(object sender, RoutedEventArgs e)
         {
             var task = Task.Factory.StartNew(ReadFile);
+            
         }
-
+   
         private async void ReadFile()
         {
+          
             Dispatcher.Invoke(() => loadingLabel.Content = "Loading");
             byte[] results;
-            using (var fs = File.Open(Environment.CurrentDirectory + @"\test.txt", FileMode.Open))
+            try
             {
-                results = new byte[fs.Length];
-                await fs.ReadAsync(results, 0, (int) fs.Length);
-            }
+                using (var fs = File.Open(Environment.CurrentDirectory + @"\test.txt", FileMode.Open))
+                {
+                    results = new byte[fs.Length];
+                    await fs.ReadAsync(results, 0, (int)fs.Length);
+                }
 
-           
-            _fileContents = Encoding.ASCII.GetString(results);
-            
-            Dispatcher.Invoke(() =>
+                _fileContents = Encoding.ASCII.GetString(results);
+
+                Dispatcher.Invoke(() =>
+                {
+                    loadingLabel.Content = "Done Loading";
+                    WritingTextBox.Text = _fileContents;
+
+                });
+            }
+            catch (Exception e)
             {
-                loadingLabel.Content = "Done Loading";
-                WritingTextBox.Text = _fileContents.ToString();
-              
-            });
+               
+            }
+            
         }
 
         private void WriteOnFile_Click(object sender, RoutedEventArgs e)
@@ -52,29 +64,44 @@ namespace guiResponsivness
             Task.Factory.StartNew(WriteToFile);
         }
 
-        private async void WriteToFile()
+        private  void WriteToFile()
         {
-            if (_fileContents.ToString().Length > 0)
+          
+            if (_fileContents.Length > 0)
             {
-                var uniEncoding = new UnicodeEncoding();
-                var filename = Environment.CurrentDirectory + @"\testCopy.txt";
+                try
+                {
+                    var filename = Environment.CurrentDirectory + @"\testCopy.txt";
 
-                using (var sourceStream = File.Open(filename, FileMode.Create))
-                {
-                    var result = uniEncoding.GetBytes(_fileContents.ToString());
-                    sourceStream.Seek(0, SeekOrigin.End);
-                    await sourceStream.WriteAsync(result, 0, result.Length);
+                    using (StreamWriter sourceStream = new StreamWriter(filename))
+                    {
+                        WritingLocker.EnterWriteLock();
+                        sourceStream.Write(_fileContents);
+                        WritingLocker.ExitWriteLock();
+                    }
+
+                    _fileContents = "";
+                    Dispatcher.Invoke(() =>
+                    {
+                        message.Content = "";
+                    });
                 }
-                _fileContents = "";
-                Dispatcher.Invoke(() =>
+                catch (Exception e)
                 {
-                    message.Content = "";
-                });
+                    Console.WriteLine(e);
+                    throw;
+                }
+                   
+                   
+           
+                
+             
             }
             else
             {
                 Dispatcher.Invoke(() => message.Content += "Wait till Read is Done \nor Press Load again.\n");
             }
+           
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
